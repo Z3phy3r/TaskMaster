@@ -10,5 +10,6 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         Log.e("hallo", "hallo")
+        Log.e("hallo", "doei")
     }
 }
