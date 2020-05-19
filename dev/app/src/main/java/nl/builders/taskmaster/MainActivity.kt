@@ -11,7 +11,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         Log.e("hallo", "hallo")
 
-log.i("doei", "doei")
+Log.i("doei", "doei")
           
         Log.e("hallo", "doei")
     }

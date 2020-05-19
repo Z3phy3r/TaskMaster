@@ -2,6 +2,7 @@ package com.example.taksmasterapp
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import nl.builders.taskmaster.R
 
 class Task : AppCompatActivity() {
 
