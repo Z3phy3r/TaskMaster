@@ -30,6 +30,7 @@
         android:layout_width="224dp"
         android:layout_height="66dp"
         android:layout_marginBottom="16dp"
+        android:onClick="rate"
         android:text="Rate"
         app:layout_constraintBottom_toTopOf="@+id/ratingBar"
         app:layout_constraintEnd_toEndOf="parent"
