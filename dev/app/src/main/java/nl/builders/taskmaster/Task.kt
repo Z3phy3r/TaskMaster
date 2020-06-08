@@ -6,15 +6,12 @@ import android.util.Log
 import nl.builders.taskmaster.R
 import com.google.firebase.database.*
 import kotlinx.android.synthetic.main.task_screen.*
+import nl.builders.taskmaster.TaskQuestion
 import nl.builders.taskmaster.taskScreenAdapter
 
 var setTasks= arrayListOf<TaskQuestion>()
 
-data class TaskQuestion(
-    val discription: String?="",
-    val imagereff: String?="",
-    val name: String?=""
-)
+
 
 class Task : AppCompatActivity() {
 
