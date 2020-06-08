@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">test database</string>
+    <string name="iets">iets</string>
+    <string name="rating">rating</string>
+    <string name="submid">submid</string>
+    <string name="testimage">testImage</string>
+</resources>
