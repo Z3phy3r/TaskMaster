@@ -5,7 +5,7 @@ import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.database.*
 import nl.builders.taskmaster.R
-
+var taskName="taskmaster1"// moet reff krijgen van scherm er voor
 var sortOnFriends:Boolean=false
 var sortOnRating:Boolean=true
 var friendList= arrayListOf<String>()
@@ -24,7 +24,7 @@ class submissions : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.submissions_screen)
-        mDatabase = FirebaseDatabase.getInstance().getReference("submissions").child(task)
+        mDatabase = FirebaseDatabase.getInstance().getReference("submissions").child(taskName)
         firebaseDataFriends()
     }
 
