@@ -5,14 +5,18 @@ import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.database.*
 import nl.builders.taskmaster.R
-import nl.builders.taskmaster.Tasks
-
 var taskName="taskmaster1"// moet reff krijgen van scherm er voor
 var sortOnFriends:Boolean=false
 var sortOnRating:Boolean=true
 var friendList= arrayListOf<String>()
 
-
+data class Tasks(
+        val ranking: Double?=-1.0,
+        val storageID:String?="",
+        val description:String?="",
+        val userID:String?="",
+        val userUID:String?=""// get from tasklist when clicked on in listview
+)
 fun ranking(tasklist: Tasks): Double? = tasklist.ranking
 
 class submissions : AppCompatActivity() {

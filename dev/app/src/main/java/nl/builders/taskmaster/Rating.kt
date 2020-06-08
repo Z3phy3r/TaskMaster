@@ -16,7 +16,6 @@ import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
 import kotlinx.android.synthetic.main.view_task_rating_screen.*
 import nl.builders.taskmaster.R
-import nl.builders.taskmaster.RatingData
 import nl.builders.taskmaster.setTasks
 
 val ratingFirebase=taskList[position].rating           //add from last page task.indexList.ranking
@@ -25,7 +24,10 @@ var userUID=taskList[position].userUID  //add from last page taskList.index.user
 var task:String= setTasks[position].name //add from last page taskList[index].name
 var currentRating= arrayListOf<RatingData>()
 
-
+data class RatingData(
+        val nrVotes: Double?=-1.0,
+        val sumOfVotes: Double?=-1.0
+)
 class Rating : AppCompatActivity() {
     var ratingTextView: TextView? = null
     var videoView: ImageView?=null
