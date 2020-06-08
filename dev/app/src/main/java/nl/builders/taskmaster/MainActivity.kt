@@ -7,6 +7,14 @@ import com.example.taksmasterapp.submissions
 import com.google.firebase.database.*
 import com.google.firebase.storage.StorageReference
 
+var setTasks= arrayListOf<TaskQuestion>()
+
+data class TaskQuestion(
+        val discription: String?="",
+        val imagereff: String?="",
+        val name: String?=""
+)
+
 class MainActivity : AppCompatActivity() {
     private var database: DatabaseReference? = null
 
@@ -17,26 +25,24 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         val db = FirebaseDatabase.getInstance()
         setContentView(R.layout.activity_main)
-        var list:ArrayList<DataSnapshot> = ArrayList()
-        database= FirebaseDatabase.getInstance().reference
-        //database = FirebaseDatabase.getInstance().getReference("submissions/testTask1" )
-        val childEventListener: ChildEventListener = FirebaseDatabase.getInstance().reference.child("submissions").child("testTask1")
-            .addChildEventListener(object : ChildEventListener {
-            override fun onCancelled(p0: DatabaseError) {}
-            override fun onChildMoved(p0: DataSnapshot, p1: String?) {}
-            override fun onChildChanged(p0: DataSnapshot, p1: String?) {}
-            override fun onChildAdded(p0: DataSnapshot, p1: String?) {
-               var index = 0
-                for (testTask1: DataSnapshot in list){
-                    list.add(testTask1)
+        getTasks()
+    }
+    private fun getTasks() {
+    FirebaseDatabase.getInstance().getReference("tasks")
+            .addListenerForSingleValueEvent(object : ValueEventListener {
+                override fun onCancelled(p0: DatabaseError) {
+                    throw p0.toException()
                 }
-            }
 
-            override fun onChildRemoved(p0: DataSnapshot) {
-            }
-        })
-
-
+                override fun onDataChange(p0: DataSnapshot) {
+                    for (productSnapshot in p0.children) {
+                        val tasks =productSnapshot.getValue((TaskQuestion()::class.java))
+                        setTasks.add(tasks!!)
+                        Log.e("setTasks", setTasks.toString())
+                        Log.e("p0",productSnapshot.toString())
+                    }
+                }
+            })
 
     }
 
