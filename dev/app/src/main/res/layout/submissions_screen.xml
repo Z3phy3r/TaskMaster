@@ -6,13 +6,16 @@
     android:layout_height="match_parent">
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerView2"
-        android:layout_width="335dp"
-        android:layout_height="388dp"
-        android:layout_marginTop="52dp"
+
+        android:id="@+id/submissionsRecyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="450dp"
+        android:layout_marginTop="5dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent">
+
+    </androidx.recyclerview.widget.RecyclerView>
 
     <ToggleButton
         android:id="@+id/toggleButton"
@@ -24,7 +27,7 @@
         android:textOn="world"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/recyclerView2" />
+        app:layout_constraintTop_toBottomOf="@+id/submissionsRecyclerView" />
 
     <ToggleButton
         android:id="@+id/toggleButton2"

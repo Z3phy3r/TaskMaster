@@ -1,5 +1,8 @@
 package nl.builders.taskmaster
 
+import android.content.Context
+import android.content.Intent
+import android.content.Intent.getIntent
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.util.Log
@@ -8,11 +11,17 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.taksmasterapp.TaskQuestion
+import com.example.taksmasterapp.submissions
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
 import kotlinx.android.synthetic.main.task_screen_adapter.view.*
 
+
+var nextScreenTask: String? = ""
+var nextScreenDesc: String? = ""
+
 data class taskScreenAdapter(
+    var mContext:Context,
     val taskList: List<TaskQuestion> // in de list kan je een class stoppen
 ) : RecyclerView.Adapter<taskScreenAdapter.ViewPagerViewHolder> ()
 {
@@ -22,6 +31,8 @@ data class taskScreenAdapter(
 
         val view = LayoutInflater.from(parent.context).inflate(R.layout.task_screen_adapter, parent, false)
         return ViewPagerViewHolder(view)
+
+
     }
 
     override fun getItemCount(): Int {
@@ -33,7 +44,9 @@ data class taskScreenAdapter(
         var bmp : Bitmap? = null
         var fileRef: StorageReference? = null
 
-        fileRef = FirebaseStorage.getInstance().reference.child("testTask1").child(taskList[position].imagereff!!)
+        Log.d("tasklistposition" , taskList[position].imagereff!!.toString() )
+        fileRef = FirebaseStorage.getInstance().reference.child("taskImages").child(taskList[position].imagereff!!)
+
 
         Log.e("fileref", fileRef.toString())
 
@@ -53,10 +66,29 @@ data class taskScreenAdapter(
         } else {
 
         }
-        val curTaskName = taskList[position].name        //  taskList[position].storageID // images[position]  // +1 per swipe position = INT
-        val curDescription = taskList[position].discription//titles[position]
+        var curTaskName = taskList[position].name        //  taskList[position].storageID // images[position]  // +1 per swipe position = INT
+        var curDescription = taskList[position].discription //titles[position]
         holder.itemView.descriptionTextView.setText(curDescription)
         holder.itemView.titleTextView.setText(curTaskName)
+        holder.itemView.buttonSubmit.setOnClickListener({v -> nextPage() })
+
+       nextScreenTask = curTaskName
+       nextScreenDesc = curDescription
 
     }
+
+    private fun nextPage() {
+
+        val intent = Intent(mContext, submissions::class.java).apply{
+          this.putExtra("currentTask", nextScreenTask)
+          this.putExtra("currentDescription", nextScreenDesc)
+
+
+        }
+       mContext.startActivity(intent)
+    }
+
 }
+
+
+

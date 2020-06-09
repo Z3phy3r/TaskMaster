@@ -3,12 +3,21 @@ package com.example.taksmasterapp
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.firebase.database.*
+import kotlinx.android.synthetic.main.submissions_screen.*
+import kotlinx.android.synthetic.main.task_screen.*
 import nl.builders.taskmaster.R
+import nl.builders.taskmaster.SubmissionScreenAdapter
 
+var user: String = "f2IX4FQb4NRlmxPfwkmJlYo7FNC2"
+var task: String = "testTask1"
+var description: String? = ""
 var sortOnFriends:Boolean=false
 var sortOnRating:Boolean=true
 var friendList= arrayListOf<String>()
+
+// var setUserTasks= arrayListOf<Tasks>()
 
 data class Tasks(
         val ranking: Double?=-1.0,
@@ -21,11 +30,17 @@ fun ranking(tasklist: Tasks): Double? = tasklist.ranking
 
 class submissions : AppCompatActivity() {
     private var mDatabase: DatabaseReference? = null
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.submissions_screen)
-        mDatabase = FirebaseDatabase.getInstance().getReference("submissions").child(task)
-        firebaseDataFriends()
+  override fun onCreate(savedInstanceState: Bundle?) {
+       super.onCreate(savedInstanceState)
+     setContentView(R.layout.submissions_screen)
+
+      mDatabase = FirebaseDatabase.getInstance().getReference("submissions").child(task)
+//      task = intent.getStringExtra("currentTask")
+//      description = intent.getStringExtra("currentDescription")
+
+      Log.e("chef", task)
+
+      firebaseDataFriends()
     }
 
     private fun firebaseDataFriends() {
@@ -92,10 +107,16 @@ class submissions : AppCompatActivity() {
 
                 override fun onDataChange(p0: DataSnapshot) {
                     for (productSnapshot in p0.children) {
-                        val task = p0.child(user).getValue(Tasks::class.java)
+                        val task = productSnapshot.getValue(Tasks::class.java)
                         taskList.add(task!!)
-                    }
 
+
+                    }
+                  val adapter = SubmissionScreenAdapter(this@submissions, taskList)
+                 submissionsRecyclerView.adapter = adapter
+                    submissionsRecyclerView.layoutManager = LinearLayoutManager(this@submissions)
+//                    layoutManager.setReverseLayout(true)
+//                    layoutManager.setStackFromEnd(true)
                     println(taskList)
                     Log.e("firebase info", taskList.toString())
                 }
