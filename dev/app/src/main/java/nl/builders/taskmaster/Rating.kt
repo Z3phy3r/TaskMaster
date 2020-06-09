@@ -19,7 +19,7 @@ import nl.builders.taskmaster.R
 import nl.builders.taskmaster.setTasks
 
 val ratingFirebase=taskList[position].rating           //add from last page task.indexList.ranking
-var user: String= taskList[position].userID        //add from last page taskList.index.user
+var.. user: String= taskList[position].userID        //add from last page taskList.index.user
 var userUID=taskList[position].userUID  //add from last page taskList.index.userUID
 var task:String= setTasks[position].name //add from last page taskList[index].name
 var currentRating= arrayListOf<RatingData>()
