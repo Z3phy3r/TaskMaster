@@ -10,13 +10,22 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity">
+        <activity
+            android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name="com.example.taksmasterapp.Friends" />
+        <activity android:name="com.example.taksmasterapp.submissions"/>
+        <activity android:name="com.example.taksmasterapp.TmTask"/>
+        <activity android:name="com.example.taksmasterapp.FirstTimeSetup"/>
+        <activity android:name="com.example.taksmasterapp.LogIn"/>
+        <activity android:name="com.example.taksmasterapp.Profile"/>
+        <activity android:name="com.example.taksmasterapp.Settings"/>
+        <activity android:name="com.example.taksmasterapp.UploadTask"/>
     </application>
 
 </manifest>

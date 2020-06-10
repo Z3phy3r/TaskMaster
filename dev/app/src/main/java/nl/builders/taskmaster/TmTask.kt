@@ -16,7 +16,7 @@ data class TaskQuestion(
     val name: String?=""
 )
 
-class Task : AppCompatActivity() {
+class TmTask : AppCompatActivity() {
 
     private var mDatabase: DatabaseReference? = null
     
@@ -41,7 +41,7 @@ class Task : AppCompatActivity() {
                         Log.e("setTasks", setTasks.toString())
                         Log.e("p0",productSnapshot.toString())
                     }
-                    val adapter = taskScreenAdapter(setTasks)
+                    val adapter = taskScreenAdapter(this@TmTask,setTasks)
                     viewPager.adapter = adapter
 
                 }
