@@ -115,10 +115,13 @@ class UploadTask : AppCompatActivity() {
                 // taskSnapshot.metadata contains file metadata such as size, content-type, etc
                 var downloadURL = "it.storage.getR"
                 Log.i("downloadURL", downloadURL.toString())
+                onBackPressed()
             }
 
 
+
         }
+
     }
     override fun onBackPressed(){
         super.onBackPressed()
