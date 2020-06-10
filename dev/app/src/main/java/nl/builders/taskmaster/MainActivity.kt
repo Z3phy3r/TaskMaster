@@ -37,6 +37,8 @@ class MainActivity : AppCompatActivity() {
 
     fun goClicked(view: View) {
         // Check if we can log in the user
+
+
         mAuth.signInWithEmailAndPassword(mailText?.text.toString(), passwordText?.text.toString())
             .addOnCompleteListener(this) { task ->
                 if (task.isSuccessful) {

@@ -8,48 +8,51 @@
     <androidx.recyclerview.widget.RecyclerView
 
         android:id="@+id/submissionsRecyclerView"
-        android:layout_width="403dp"
-        android:layout_height="577dp"
+        android:layout_width="406dp"
+        android:layout_height="501dp"
         android:layout_marginTop="5dp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
     </androidx.recyclerview.widget.RecyclerView>
 
-    <Switch
-        android:id="@+id/switch2"
-        android:layout_width="109dp"
-        android:layout_height="39dp"
-        android:layout_marginTop="40dp"
-        android:switchMinWidth="60dp"
-        android:textOff="Rating"
-        android:textOn="Latest"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/switch1"
-        app:layout_constraintTop_toBottomOf="@+id/submissionsRecyclerView" />
-
-    <Switch
-        android:id="@+id/switch1"
-        android:layout_width="109dp"
-        android:layout_height="39dp"
-        android:layout_marginTop="40dp"
-        android:switchMinWidth="60dp"
+    <ToggleButton
+        android:id="@+id/toggleButtonFriends"
+        android:layout_width="142dp"
+        android:layout_height="45dp"
+        android:layout_marginTop="22dp"
+        android:text="ToggleButton"
         android:textOff="World"
         android:textOn="Friends"
-        app:layout_constraintEnd_toStartOf="@+id/switch2"
-        app:layout_constraintHorizontal_bias="0.5"
+        android:onClick="worldButtonClicked"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/submissionsRecyclerView" />
+        app:layout_constraintTop_toBottomOf="@+id/textView10" />
+
+    <ToggleButton
+        android:id="@+id/toggleButtonRating"
+        android:layout_width="142dp"
+        android:layout_height="45dp"
+        android:layout_marginTop="15dp"
+        android:textOff="Rating"
+        android:textOn="Date"
+        android:text="ToggleButton"
+        android:onClick="ratingButtonClicked"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.494"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toggleButtonFriends" />
 
     <TextView
-        android:id="@+id/textView4"
+        android:id="@+id/textView10"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="13dp"
-        android:text="TextView"
-        app:layout_constraintBottom_toTopOf="@+id/switch1"
+        android:layout_marginTop="2dp"
+        android:text="Sort by:"
+        android:textSize="20dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"

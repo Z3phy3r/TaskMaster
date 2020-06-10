@@ -2,8 +2,10 @@ package com.example.taksmasterapp
 
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.google.android.gms.tasks.Task
 import com.google.firebase.database.*
 import kotlinx.android.synthetic.main.submissions_screen.*
 import nl.builders.taskmaster.R
@@ -37,13 +39,20 @@ class submissions : AppCompatActivity() {
 //      task = intent.getStringExtra("currentTask")
 //      description = intent.getStringExtra("currentDescription")
 
+
       Log.e("chef", task)
 
       firebaseDataFriends()
     }
 
-
-
+    fun worldButtonClicked(view: View){
+        sortOnFriends = !sortOnFriends
+        firebaseDataFriends()
+    }
+    fun ratingButtonClicked(view: View){
+        sortOnRating = !sortOnRating
+        firebaseDataFriends()
+    }
 
     private fun firebaseDataFriends() {
         friendList.clear()
@@ -59,10 +68,11 @@ class submissions : AppCompatActivity() {
                 for (productSnapshot in p0.children) {
                     val friends = productSnapshot.getValue(String::class.java)
                     friendList.add(friends!!)
+                    println(friendList)
+                    Log.e("firebase friends", friendList.toString())
+                    firebaseDataRetriever()
                 }
-                println(friendList)
-                Log.e("firebase friends", friendList.toString())
-                firebaseDataRetriever()
+
             }
 
         })
@@ -75,26 +85,35 @@ class submissions : AppCompatActivity() {
         if (sortOnFriends) {
             Log.e("firebaseDataSorting", "sort on friends")
             taskList.clear()
-            friendList.forEach { s ->
-                println("foreach$s")
-                mDatabase?.child(s)?.addListenerForSingleValueEvent(object : ValueEventListener {
-                    override fun onCancelled(p0: DatabaseError) {
-                        throw p0.toException()
-                    }
-
-                    override fun onDataChange(p0: DataSnapshot) {
-                        Log.e("hoi", p0.toString())
-                        val task = p0.getValue(Tasks::class.java)
-                        taskList.add(task!!)
-                        Log.e("taskList", taskList.toString())
+            mDatabase?.addListenerForSingleValueEvent(object : ValueEventListener {
+                override fun onCancelled(p0: DatabaseError) {
+                    throw p0.toException()
+                }
+                override fun onDataChange(p0: DataSnapshot) {
+                    Log.e("firebase friends", friendList.toString())
+                    friendList.forEach { s ->
+                        val task = p0.child(s).getValue(Tasks::class.java)
+                        if(task!=null){
+                            taskList.add(task)
+                            Log.e("taskListhoi", taskList.toString())
+                        }
                         if (sortOnRating) {
                             taskList.sortByDescending { ranking(it) }
                             Log.e("taskList2", taskList.toString())
                         }
                     }
-                })
-            }
 
+                    val adapter = SubmissionScreenAdapter(this@submissions, taskList)
+                    submissionsRecyclerView.adapter = adapter
+                    submissionsRecyclerView.layoutManager = LinearLayoutManager(this@submissions)
+                    val linearLayoutManager = LinearLayoutManager(this@submissions)
+                    linearLayoutManager.reverseLayout = true
+                    linearLayoutManager.stackFromEnd = true
+                    submissionsRecyclerView.setLayoutManager(linearLayoutManager)
+                    println(taskList)
+                    Log.e("firebase info", taskList.toString())
+                }
+            })
 
         } else {
             val queryRef: Query? = if (sortOnRating) {
@@ -114,6 +133,7 @@ class submissions : AppCompatActivity() {
 
 
                     }
+
                   val adapter = SubmissionScreenAdapter(this@submissions, taskList)
                  submissionsRecyclerView.adapter = adapter
                     submissionsRecyclerView.layoutManager = LinearLayoutManager(this@submissions)

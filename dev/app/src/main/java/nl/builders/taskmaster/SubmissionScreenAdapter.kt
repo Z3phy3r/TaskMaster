@@ -9,15 +9,11 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.taksmasterapp.Tasks
-import com.example.taksmasterapp.user
 import com.google.firebase.database.*
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
-import kotlinx.android.synthetic.main.task_screen_adapter.view.*
 import kotlinx.android.synthetic.main.user_task_submission.view.*
 import kotlinx.android.synthetic.main.user_task_submission.view.titleTextView
-import java.nio.file.Files.size
-import kotlin.math.log
 
 class SubmissionScreenAdapter(
     var mContext:Context,
@@ -31,6 +27,8 @@ class SubmissionScreenAdapter(
         Log.e("submissions log", submissions.toString())
         return SubmissionViewHolder(view)
     }
+
+
 
     override fun getItemCount(): Int {
         return submissions.size
