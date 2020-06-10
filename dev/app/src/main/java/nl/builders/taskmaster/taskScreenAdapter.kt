@@ -70,7 +70,7 @@ data class taskScreenAdapter(
         var curDescription = taskList[position].discription //titles[position]
         holder.itemView.descriptionTextView.setText(curDescription)
         holder.itemView.titleTextView.setText(curTaskName)
-        holder.itemView.buttonSubmit.setOnClickListener({v -> nextPage() })
+        holder.itemView.buttonViewSubmissions.setOnClickListener({v -> nextPage() })
 
        nextScreenTask = curTaskName
        nextScreenDesc = curDescription

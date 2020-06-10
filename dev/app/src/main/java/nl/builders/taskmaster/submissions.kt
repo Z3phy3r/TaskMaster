@@ -6,7 +6,6 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.firebase.database.*
 import kotlinx.android.synthetic.main.submissions_screen.*
-import kotlinx.android.synthetic.main.task_screen.*
 import nl.builders.taskmaster.R
 import nl.builders.taskmaster.SubmissionScreenAdapter
 
@@ -42,6 +41,9 @@ class submissions : AppCompatActivity() {
 
       firebaseDataFriends()
     }
+
+
+
 
     private fun firebaseDataFriends() {
         friendList.clear()
@@ -115,8 +117,10 @@ class submissions : AppCompatActivity() {
                   val adapter = SubmissionScreenAdapter(this@submissions, taskList)
                  submissionsRecyclerView.adapter = adapter
                     submissionsRecyclerView.layoutManager = LinearLayoutManager(this@submissions)
-//                    layoutManager.setReverseLayout(true)
-//                    layoutManager.setStackFromEnd(true)
+                    val linearLayoutManager = LinearLayoutManager(this@submissions)
+                    linearLayoutManager.reverseLayout = true
+                    linearLayoutManager.stackFromEnd = true
+                    submissionsRecyclerView.setLayoutManager(linearLayoutManager)
                     println(taskList)
                     Log.e("firebase info", taskList.toString())
                 }
