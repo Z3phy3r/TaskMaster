@@ -1,4 +1,4 @@
-package nl.builders.taskmaster
+package com.example.taksmasterapp
 data class TaskQuestion(
         val discription: String?="",
         val imagereff: String?="",

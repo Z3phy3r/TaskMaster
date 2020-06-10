@@ -1,5 +1,5 @@
-package nl.builders.taskmaster
-data class Task(
+package com.example.taksmasterapp
+data class Tasks(
         val ranking: Double?=-1.0,
         val storageID:String?="",
         val description:String?="",

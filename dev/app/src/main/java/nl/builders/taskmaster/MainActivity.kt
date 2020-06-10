@@ -1,5 +1,5 @@
 
-package nl.builders.taskmaster
+package com.example.taksmasterapp
 
 import android.content.Intent
 import android.os.Bundle

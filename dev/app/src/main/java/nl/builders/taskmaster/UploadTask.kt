@@ -16,8 +16,8 @@ import android.widget.Toast
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.storage.FirebaseStorage
 import kotlinx.android.synthetic.main.upload_task_screen.*
-import nl.builders.taskmaster.R
-import nl.builders.taskmaster.taskScreenAdapter
+import com.example.taksmasterapp.R
+import com.example.taksmasterapp.taskScreenAdapter
 import java.io.ByteArrayOutputStream
 import java.util.*
 

@@ -7,7 +7,8 @@ import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
-import nl.builders.taskmaster.R
+import com.example.taksmasterapp.R
+import com.example.taksmasterapp.Tasks
 
 class Profile : AppCompatActivity() {
     var myTasks= arrayListOf<Tasks>()

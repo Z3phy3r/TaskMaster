@@ -3,18 +3,13 @@ package com.example.taksmasterapp
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import nl.builders.taskmaster.R
+import com.example.taksmasterapp.R
 import com.google.firebase.database.*
 import kotlinx.android.synthetic.main.task_screen.*
-import nl.builders.taskmaster.taskScreenAdapter
+import com.example.taksmasterapp.taskScreenAdapter
 
 var setTasks= arrayListOf<TaskQuestion>()
 
-data class TaskQuestion(
-    val discription: String?="",
-    val imagereff: String?="",
-    val name: String?=""
-)
 
 class TmTask : AppCompatActivity() {
 

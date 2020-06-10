@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="nl.builders.taskmaster">
+    package="com.example.taksmasterapp">
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <application
@@ -26,6 +26,7 @@
         <activity android:name="com.example.taksmasterapp.Profile"/>
         <activity android:name="com.example.taksmasterapp.Settings"/>
         <activity android:name="com.example.taksmasterapp.UploadTask"/>
+        <activity android:name="com.example.taksmasterapp.Rating"/>
     </application>
 
 </manifest>

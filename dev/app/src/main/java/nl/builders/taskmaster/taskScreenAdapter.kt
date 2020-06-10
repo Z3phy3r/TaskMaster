@@ -1,4 +1,4 @@
-package nl.builders.taskmaster
+package com.example.taksmasterapp
 
 import android.content.Context
 import android.content.Intent
