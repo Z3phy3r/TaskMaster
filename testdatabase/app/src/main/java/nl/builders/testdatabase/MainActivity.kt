@@ -14,7 +14,7 @@ import android.widget.Button as Button1
 import com.google.firebase.database.DataSnapshot as DataSnapshot1
 
 private var mDatabase: DatabaseReference? = null
-var task:String="testTask1"
+
 var sortOnFriends:Boolean=false
 var sortOnRating:Boolean=true
 var userUID="f2IX4FQb4NRlmxPfwkmJlYo7FNC2"
@@ -22,10 +22,9 @@ var user: String= "f2IX4FQb4NRlmxPfwkmJlYo7FNC2"
 var friendList= arrayListOf<String>()
 var friendProfileList= arrayListOf<Friend>()
 var myTasks= arrayListOf<Task>()
-
 var currentRating= arrayListOf<Rating>()
 var setTasks= arrayListOf<TaskQuestion>()
-
+var task="testTask1"
 data class Friend(
     val userID: String?="",
     val profilePic: String?=""
@@ -193,7 +192,7 @@ class MainActivity : AppCompatActivity() {
 
                                 override fun onDataChange(p0: DataSnapshot1) {
                                     for (productSnapshot in p0.children) {
-                                        val task = p0.child(user).getValue(Task::class.java)
+                                        val task = productSnapshot.getValue(Task::class.java)
                                         taskList.add(task!!)
                                     }
 

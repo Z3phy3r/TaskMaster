@@ -11,6 +11,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.taksmasterapp.TaskQuestion
+import com.example.taksmasterapp.UploadTask
 import com.example.taksmasterapp.submissions
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
@@ -70,14 +71,14 @@ data class taskScreenAdapter(
         var curDescription = taskList[position].discription //titles[position]
         holder.itemView.descriptionTextView.setText(curDescription)
         holder.itemView.titleTextView.setText(curTaskName)
-        holder.itemView.buttonViewSubmissions.setOnClickListener({v -> nextPage() })
-
+        holder.itemView.buttonViewSubmissions.setOnClickListener({v -> viewSub() })
+        holder.itemView.buttonSubmit.setOnClickListener({v -> submit() })
        nextScreenTask = curTaskName
        nextScreenDesc = curDescription
 
     }
 
-    private fun nextPage() {
+    private fun viewSub() {
 
         val intent = Intent(mContext, submissions::class.java).apply{
           this.putExtra("currentTask", nextScreenTask)
@@ -87,7 +88,16 @@ data class taskScreenAdapter(
         }
        mContext.startActivity(intent)
     }
+    private fun submit() {
 
+        val intent = Intent(mContext, UploadTask::class.java).apply{
+            this.putExtra("currentTask", nextScreenTask)
+            this.putExtra("currentDescription", nextScreenDesc)
+
+
+        }
+        mContext.startActivity(intent)
+    }
 }
 
 

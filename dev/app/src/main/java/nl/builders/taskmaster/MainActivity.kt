@@ -97,7 +97,6 @@ class MainActivity : AppCompatActivity() {
 				}
 			}
 
-		Log.d("hoi", "hoi")
 }
 
 
