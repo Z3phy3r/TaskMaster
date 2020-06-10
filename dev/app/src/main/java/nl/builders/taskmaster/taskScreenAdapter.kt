@@ -78,11 +78,13 @@ data class taskScreenAdapter(
 
     }
 
+
+
     private fun viewSub() {
 
         val intent = Intent(mContext, submissions::class.java).apply{
-          this.putExtra("currentTask", nextScreenTask)
-          this.putExtra("currentDescription", nextScreenDesc)
+              this.putExtra("currentTask", nextScreenTask)
+              this.putExtra("currentDescription", nextScreenDesc)
 
 
         }
