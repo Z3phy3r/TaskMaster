@@ -10,12 +10,7 @@ import kotlinx.android.synthetic.main.task_screen.*
 import com.example.taksmasterapp.taskScreenAdapter
 
 var setTasks= arrayListOf<TaskQuestion>()
-var uid = Intent.getStringExtra("uid")
-data class TaskQuestion(
-    val discription: String?="",
-    val imagereff: String?="",
-    val name: String?=""
-)
+var uid: String? = null;
 
 class TmTask : AppCompatActivity() {
 
@@ -25,6 +20,8 @@ class TmTask : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.task_screen)
         mDatabase = FirebaseDatabase.getInstance().getReference("tasks")
+        val intent: Intent = getIntent()
+        uid = intent.getStringExtra("uid")
         getTasks()
     }
     private fun getTasks() {
