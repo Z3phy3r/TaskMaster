@@ -16,8 +16,8 @@ import android.widget.Toast
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.storage.FirebaseStorage
 import kotlinx.android.synthetic.main.upload_task_screen.*
-import nl.builders.taskmaster.R
-import nl.builders.taskmaster.taskScreenAdapter
+import com.example.taksmasterapp.R
+import com.example.taksmasterapp.taskScreenAdapter
 import java.io.ByteArrayOutputStream
 import java.util.*
 
@@ -115,10 +115,13 @@ class UploadTask : AppCompatActivity() {
                 // taskSnapshot.metadata contains file metadata such as size, content-type, etc
                 var downloadURL = "it.storage.getR"
                 Log.i("downloadURL", downloadURL.toString())
+                onBackPressed()
             }
 
 
+
         }
+
     }
     override fun onBackPressed(){
         super.onBackPressed()

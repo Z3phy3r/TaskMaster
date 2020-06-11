@@ -1,6 +1,7 @@
-package nl.builders.taskmaster
+package com.example.taksmasterapp
 
 import android.content.Context
+import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.util.Log
@@ -8,12 +9,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.example.taksmasterapp.Tasks
 import com.google.firebase.database.*
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
 import kotlinx.android.synthetic.main.user_task_submission.view.*
-import kotlinx.android.synthetic.main.user_task_submission.view.titleTextView
 
 class SubmissionScreenAdapter(
     var mContext:Context,
@@ -72,16 +71,26 @@ class SubmissionScreenAdapter(
 
 
 
-
-
        // var fileRef = FirebaseStorage.getInstance().reference.child("taskImages").child(taskList[position].imagereff!!)
 
         var ranking = submissions[position].ranking?.toFloat()!!
         var userId = submissions[position].userID
-
+        var userPosterUid = submissions[position].userUID
+        var storageID: String?= submissions[position].storageID.toString()
+        holder.itemView.userTask.setOnClickListener({v -> viewProfile(userPosterUid , ranking, storageID) })
         holder.itemView.ratingBar.rating = ranking
         holder.itemView.titleTextView.text = userId
+    }
 
+    fun viewProfile(userPosterUid : String?, ranking : Float,storageID:String?){
+        val intent = Intent(mContext, Rating::class.java).apply {
+            Log.e("this is the user Uid" , userPosterUid)
+            Log.e("this is the user Uid" , ranking.toString())
+            this.putExtra("currentUser", userPosterUid)
+            this.putExtra("currentRanking", ranking)
+            this.putExtra("currentImageReff", storageID)
 
+        }
+        mContext.startActivity(intent)
     }
 }

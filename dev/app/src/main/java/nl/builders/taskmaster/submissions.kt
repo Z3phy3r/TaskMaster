@@ -8,8 +8,9 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.gms.tasks.Task
 import com.google.firebase.database.*
 import kotlinx.android.synthetic.main.submissions_screen.*
-import nl.builders.taskmaster.R
-import nl.builders.taskmaster.SubmissionScreenAdapter
+import com.example.taksmasterapp.R
+import com.example.taksmasterapp.SubmissionScreenAdapter
+import com.example.taksmasterapp.Tasks
 
 var user: String = "f2IX4FQb4NRlmxPfwkmJlYo7FNC2"
 var task: String = "testTask1"
@@ -20,13 +21,6 @@ var friendList= arrayListOf<String>()
 
 // var setUserTasks= arrayListOf<Tasks>()
 
-data class Tasks(
-        val ranking: Double?=-1.0,
-        val storageID:String?="",
-        val description:String?="",
-        val userID:String?="",
-        val userUID:String?=""// get from tasklist when clicked on in listview
-)
 fun ranking(tasklist: Tasks): Double? = tasklist.ranking
 
 class submissions : AppCompatActivity() {

@@ -1,4 +1,4 @@
-package nl.builders.taskmaster
+package com.example.taksmasterapp
 
 import android.content.Context
 import android.content.Intent
@@ -9,10 +9,15 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.example.taksmasterapp.TaskQuestion
 import com.example.taksmasterapp.UploadTask
 import com.example.taksmasterapp.submissions
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
 import kotlinx.android.synthetic.main.task_screen_adapter.view.*
@@ -78,25 +83,41 @@ data class taskScreenAdapter(
 
     }
 
+
+
     private fun viewSub() {
 
         val intent = Intent(mContext, submissions::class.java).apply{
-          this.putExtra("currentTask", nextScreenTask)
-          this.putExtra("currentDescription", nextScreenDesc)
+              this.putExtra("currentTask", nextScreenTask)
+              this.putExtra("currentDescription", nextScreenDesc)
 
 
         }
        mContext.startActivity(intent)
     }
     private fun submit() {
+        FirebaseDatabase.getInstance().getReference("submissions").child(task)
+                .addListenerForSingleValueEvent(object : ValueEventListener {
+                    override fun onCancelled(p0: DatabaseError) {
+                        throw p0.toException()
+                    }
 
-        val intent = Intent(mContext, UploadTask::class.java).apply{
-            this.putExtra("currentTask", nextScreenTask)
-            this.putExtra("currentDescription", nextScreenDesc)
+                    override fun onDataChange(p0: com.google.firebase.database.DataSnapshot) {
+                        Log.e("userUID", userUID.toString())
+                        Log.e("snapshot", p0.value.toString())
+                        if (p0.value.toString().contains(userUID)) {
+                            Toast.makeText(mContext, "already sumbmited!!", Toast.LENGTH_LONG).show()
+                        } else {
 
+                            val intent = Intent(mContext, UploadTask::class.java).apply {
+                                this.putExtra("currentTask", nextScreenTask)
+                                this.putExtra("currentDescription", nextScreenDesc)
+                            }
+                            mContext.startActivity(intent)
+                        }
 
-        }
-        mContext.startActivity(intent)
+                    }
+                })
     }
 }
 

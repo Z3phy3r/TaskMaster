@@ -1,13 +1,11 @@
 package com.example.taksmasterapp
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.database.*
-import nl.builders.taskmaster.Friend
-import nl.builders.taskmaster.R
-import nl.builders.taskmaster.SubmissionScreenAdapter
+import com.example.taksmasterapp.Friend
+import com.example.taksmasterapp.R
 
 class Friends : AppCompatActivity() {
     var friendList= arrayListOf<String>()
