@@ -39,8 +39,10 @@
         android:layout_marginStart="11dp"
         android:layout_marginBottom="4dp"
         android:clickable="false"
+        android:isIndicator="true"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/userImage" />
+        app:layout_constraintStart_toEndOf="@+id/userImage"
+        />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

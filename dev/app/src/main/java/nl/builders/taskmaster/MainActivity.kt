@@ -20,11 +20,11 @@ import com.google.firebase.ktx.Firebase
 
 class MainActivity : AppCompatActivity() {
 
-	lateinit var mailText: EditText
-	lateinit var passwordText: EditText
-	private lateinit var mAuth: FirebaseAuth
-	lateinit var signInButton: Button
-	lateinit var uid: String;
+	 var mailText: EditText?= null
+	var passwordText: EditText?= null
+	var mAuth: FirebaseAuth?= null
+	 var signInButton: Button?= null
+	 var uid: String? = null
 
 	override fun onCreate(savedInstanceState: Bundle?) {
 		super.onCreate(savedInstanceState)
@@ -38,7 +38,7 @@ class MainActivity : AppCompatActivity() {
 
 
 	fun goClicked(view: View) {
-		if (TextUtils.isEmpty(mailText.getText()) || TextUtils.isEmpty(passwordText.getText())) {
+		if (TextUtils.isEmpty(mailText?.getText()) || TextUtils.isEmpty(passwordText?.getText())) {
 			Toast.makeText(
 				this,
 				"please enter your credentials to sign up or sign in",
@@ -50,20 +50,20 @@ class MainActivity : AppCompatActivity() {
 		 //Check if we can log in the user
 			Log.d("mailtext", mailText?.text.toString())
 			Log.d("passwordtext", passwordText?.text.toString())
-			mAuth.signInWithEmailAndPassword(
+			mAuth?.signInWithEmailAndPassword(
 				mailText?.text.toString(),
 				passwordText?.text.toString()
 			)
-				.addOnCompleteListener(this) { task ->
+				?.addOnCompleteListener(this) { task ->
 					Log.d("addoncomplete", "logged");
 					if (task.isSuccessful) {
 						logIn()
 					} else {
 						// Sign up the user
-						mAuth.createUserWithEmailAndPassword(
+						mAuth?.createUserWithEmailAndPassword(
 							mailText?.text.toString(),
 							passwordText?.text.toString()
-						).addOnCompleteListener(this) { task ->
+						)?.addOnCompleteListener(this) { task ->
 							if (task.isSuccessful) {
 								//FirebaseDatabase.getInstance().getReference().child("users").child(task.result.user.uid).child("email").setValue(usernameText?.text.toString())
 								val user = Firebase.auth.currentUser
@@ -77,7 +77,7 @@ class MainActivity : AppCompatActivity() {
 								//FirebaseDatabase.getInstance().getReference().child("users").setValue(user!!.uid)
 								FirebaseDatabase.getInstance().reference.child("users")
 									.child(user!!.uid).child("userID").setValue(
-										mailText.text.toString()
+										mailText?.text.toString()
 									)
 								FirebaseDatabase.getInstance().reference.child("users")
 									.child(user.uid).child("profilePic").setValue("alvin.jpg")
