@@ -24,6 +24,7 @@ class MainActivity : AppCompatActivity() {
 	lateinit var passwordText: EditText
 	private lateinit var mAuth: FirebaseAuth
 	lateinit var signInButton: Button
+	lateinit var uid: String;
 
 	override fun onCreate(savedInstanceState: Bundle?) {
 		super.onCreate(savedInstanceState)
@@ -70,7 +71,8 @@ class MainActivity : AppCompatActivity() {
 									// The user's ID, unique to the Firebase project. Do NOT use this value to
 									// authenticate with your backend server, if you have one. Use
 									// FirebaseUser.getToken() instead.
-									val uid = user.uid
+									val userUid = user.uid
+									uid = userUid;
 								}
 								//FirebaseDatabase.getInstance().getReference().child("users").setValue(user!!.uid)
 								FirebaseDatabase.getInstance().reference.child("users")
@@ -102,7 +104,9 @@ class MainActivity : AppCompatActivity() {
 
 	private fun logIn() {
 		// Move to next Activity
-		val intent = Intent(this, TmTask::class.java)
+		val intent = Intent(this, TmTask::class.java).apply{
+			this.putExtra("UID", uid)
+		}
 		startActivity(intent)
 	}
 

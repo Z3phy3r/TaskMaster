@@ -1,5 +1,6 @@
 package com.example.taksmasterapp
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -9,7 +10,12 @@ import kotlinx.android.synthetic.main.task_screen.*
 import com.example.taksmasterapp.taskScreenAdapter
 
 var setTasks= arrayListOf<TaskQuestion>()
-
+var uid = Intent.getStringExtra("uid")
+data class TaskQuestion(
+    val discription: String?="",
+    val imagereff: String?="",
+    val name: String?=""
+)
 
 class TmTask : AppCompatActivity() {
 

@@ -25,6 +25,7 @@ import java.util.*
 var selectedTask="testTask2"
 var userUID="0ITvbQnnC4McEC4OkBnvbUgnrDp2"
 var descriptionText="null"
+
 //var storageID=null
 var userID="testGuido1"
 
@@ -125,7 +126,7 @@ class UploadTask : AppCompatActivity() {
     }
     override fun onBackPressed(){
         super.onBackPressed()
-        var intent= Intent(this, TmTask::class.java)
+        val intent= Intent(this, TmTask::class.java)
         startActivity(intent)
     }
 }
